@@ -6,8 +6,7 @@ require 'autenticacao.php';
 
 $paises = PreencherCampoPais();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $name = $_POST['txt_nome'];
     $district = $_POST['txt_district'];
     $population = $_POST['txt_population'];
@@ -17,17 +16,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
     if (ValidarCidadeExiste($name, $district, $id) == 0){
         AlterarCidade($name, $district, $population, $country_code, $id);
         header("Location: lista.php");
-    }
-    else 
-    {
+    } else {
         echo "<p><h3> Cidade já existe! </h3></p>";
     }
-} 
-else {
+} else {
 
     if(isset($_GET['id'])){
-        header('Location: lista.php');
+         header('Location: lista.php');
     }
+
     $cidade = ObterCidade($_GET['id']);
     $name = $cidade['Name'];
     $district = $cidade['District'];
@@ -39,32 +36,25 @@ else {
 
 function AlterarCidade($name, $district, $population, $country_code, $id){
     $pdo = Banco::conectar();
-
-    $sql = "UPDATE city SET Name = ?, District = ?, Population = ?, CountryCode = ? WHERE id = ?";
-
-    $q = $pdo->prepare($sql);
-
-    $q->execute(array($name, $district, $population, $country_code, $id));
-
+        $sql = "UPDATE city SET Name = ?, District = ?, Population = ?, CountryCode = ? WHERE id = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($name, $district, $population, $country_code, $id));
     Banco::desconectar();
 }
 
 function ObterCidade($id){
     $pdo = Banco::conectar();
-
-    $sql = "SELECT ID, Name, District, Population, CountryCode FROM city WHERE ID = ?";
-
-    $q = $pdo->prepare($sql);
-    $q->execute(array($id));
-
-    $cidade = $q->fetch(PDO::FETCH_ASSOC);
-
+        $sql = "SELECT ID, Name, District, Population, CountryCode FROM city WHERE ID = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($id));
+        $cidade = $q->fetch(PDO::FETCH_ASSOC);
     Banco::desconectar();
 
     return $cidade;
 }
 
 ?>
+
 <html lang="pt-br">
     <head>
         <meta charset="utf-8">
