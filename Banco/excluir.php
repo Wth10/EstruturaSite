@@ -32,28 +32,20 @@
 
     function ObterCidade($id){
         $pdo = Banco::conectar();
-    
-        $sql = "SELECT ID, Name, District, Population, CountryCode FROM city WHERE ID = ?";
-    
-        $q = $pdo->prepare($sql);
-        $q->execute(array($id));
-    
-        $cidade = $q->fetch(PDO::FETCH_ASSOC);
-    
+            $sql = "SELECT ID, Name, District, Population, CountryCode FROM city WHERE ID = ?";
+            $q = $pdo->prepare($sql);
+            $q->execute(array($id));
+            $cidade = $q->fetch(PDO::FETCH_ASSOC);
         Banco::desconectar();
-    
+
         return $cidade;
     }
 
     function ExcluirCidade($id){
         $pdo = Banco::conectar();
-    
-        $sql = "DELETE FROM city WHERE id = ?";
-    
-        $q = $pdo->prepare($sql);
-    
-        $q->execute(array($id));
-    
+            $sql = "DELETE FROM city WHERE id = ?";
+            $q = $pdo->prepare($sql);
+            $q->execute(array($id));
         Banco::desconectar();
 
     }
