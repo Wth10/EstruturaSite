@@ -8,14 +8,12 @@ require 'autenticacao.php';
     $nome = '';
     $pais = '';
     
-
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nome = $_POST['txt_nome'];
         $pais = $_POST['txt_pais'];
     }  
 
-    $cidades_sql = "SELECT city.ID, city.Name, city.Population, country.Name as CountryName FROM city INNER JOIN country ON city.CountryCode = country.Code "
-                   . " WHERE city.CountryCode like '%".$pais."%' AND city.Name LIKE '%".$nome."%'";
+    $cidades_sql = "SELECT city.ID, city.Name, city.Population, country.Name as CountryName FROM city INNER JOIN country ON city.CountryCode = country.Code " . " WHERE city.CountryCode like '%".$pais."%' AND city.Name LIKE '%".$nome."%'";
 
     Banco::desconectar();
 ?>

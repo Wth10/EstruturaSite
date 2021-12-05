@@ -3,11 +3,9 @@
     require 'utilidades.php';
     require 'autenticacao.php';
 
-
     $paises = PreencherCampoPais();
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST")
-    {
+    if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $name = $_POST['txt_nome'];
         $district = $_POST['txt_district'];
         $population = $_POST['txt_population'];
@@ -16,8 +14,7 @@
 
         ExcluirCidade($id);
         // header("Location: lista.php"); 
-    } 
-    else {
+    } else {
         if(!isset($_GET['id'])){
             header('Location: lista.php');
         }

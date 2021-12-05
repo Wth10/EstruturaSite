@@ -7,12 +7,10 @@ require 'autenticacao.php';
 
 function InserirCidade($nome, $district, $country_code, $population){
     $pdo = Banco::conectar();
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    $insert = "INSERT INTO city(`Name`, `CountryCode`, `District`, `Population`) VALUES ('". $nome ."','". $country_code ."','". $district ."','". $population ."')";
-    $q = $pdo->prepare($insert);
-    $q->execute();
-   
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $insert = "INSERT INTO city(`Name`, `CountryCode`, `District`, `Population`) VALUES ('". $nome ."','". $country_code ."','". $district ."','". $population ."')";
+        $q = $pdo->prepare($insert);
+        $q->execute();
     Banco::desconectar();
 }
 
@@ -26,14 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if (ValidarCidadeExiste($nome, $district, 0) == 0){
         InserirCidade($nome, $district, $country_code, $population);
         header("Location: lista.php");
-    }
-    else 
-    {
+    } else {
         echo "<p><h3> Cidade já existe! </h3></p>";
     }
 }
-else
-{
+else {
     $paises = PreencherCampoPais();
 }
 

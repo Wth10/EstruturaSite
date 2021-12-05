@@ -1,12 +1,11 @@
 <?php
 session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['idUsuario']))
-{
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['idUsuario'])){
     unset($_SESSION['idUsuario']);
 }
 
-if(!isset($_SESSION['idUsuario'])) {
+if(!isset($_SESSION['idUsuario'])){
     header('Location: login.php');
 }
 

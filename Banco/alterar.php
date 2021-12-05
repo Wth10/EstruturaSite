@@ -3,7 +3,6 @@ require 'banco.php';
 require 'utilidades.php';
 require 'autenticacao.php';
 
-
 $paises = PreencherCampoPais();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -22,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 } else {
 
     if(isset($_GET['id'])){
-         header('Location: lista.php');
+        header('Location: lista.php');
     }
 
     $cidade = ObterCidade($_GET['id']);

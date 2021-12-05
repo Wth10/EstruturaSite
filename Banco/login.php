@@ -2,8 +2,7 @@
 require 'banco.php';
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-{
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
     $login = $_POST['login'];
     $password = $_POST['password'];
 
@@ -14,12 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 
 function login ($login, $password){
     $pdo = Banco::conectar();
-
-    $sql = "SELECT id, nome, login FROM login WHERE login = ? AND password = ?";
-    $q = $pdo->prepare($sql);
-    $q->execute(array($login, $password));
-    $dados = $q -> fetch(PDO::FETCH_ASSOC);
-
+        $sql = "SELECT id, nome, login FROM login WHERE login = ? AND password = ?";
+        $q = $pdo->prepare($sql);
+        $q->execute(array($login, $password));
+        $dados = $q -> fetch(PDO::FETCH_ASSOC);
     Banco::desconectar();
 
     if($dados['id'] > 0){
@@ -29,16 +26,10 @@ function login ($login, $password){
         echo "<h1>Foi autenticado com sucesso</h1>";
         header("Location: lista.php");
 
-    }
-    else {
+    } else {
         echo "<h1>Não está autenticado</h1>";
     }
 }
-
-
-
-
-
 ?>
 
 <html lang="en">
@@ -48,7 +39,6 @@ function login ($login, $password){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
 </head>
 <body>
     <head>
@@ -68,10 +58,8 @@ function login ($login, $password){
                     <label for="password" class="form-label">Password</label>
                     <input type="password" name="password" class="form-control" id="password">
                 </div>
-
                 <button type="submit" class="btn btn-primary">LOGAR</button>
             </form>
-
     </div>
 
 </body>
